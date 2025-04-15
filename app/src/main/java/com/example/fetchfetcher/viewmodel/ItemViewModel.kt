@@ -13,7 +13,6 @@ import android.util.Log
 class ItemViewModel : ViewModel() {
     private val itemRepository = ItemRepository()
 
-    // LiveData or State will hold the list of items
     private val _items = mutableStateOf<List<Item>>(emptyList())
     val items: State<List<Item>> = _items
 
@@ -30,10 +29,6 @@ class ItemViewModel : ViewModel() {
                 .sortedWith(compareBy({ it.listId }, { it.name }))
 
             _items.value = filteredItems
-
-            //test logging
-            Log.d("DEBUG: ItemViewModel", "Filtered items: ${filteredItems}")
-            Log.d("DEBUG", "Fetched items: ${fetchedItems.size}")
         }
     }
 }
